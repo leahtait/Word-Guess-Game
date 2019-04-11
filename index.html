@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Word Guess Game</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <h1>Word Guess Game!</h1>
+  <p>Press any key to get started</p>
+
+  <p id="wins"></p>
+  <p id="currentWord"></p>
+  <p id="remainingGuesses"></p>
+  <p id="lettersGuessed"></p>
+
+  
+<script>
+
+// variables
+
+//array of words for the quiz game. Theme: barnyard animals
+
+var answers = [ "cow", "pig", "horse", "chicken", "donkey", "duck", "llama", "alpaca"];
+
+// also need: score variable that tracks # wins/, number of guesses remaining, letters guessed by user, correct guesses, current word guess
+
+var wins = 0;
+var lettersGuessed;
+var correctGuesses;
+var remainingGuesses;
+var currentWord;
+
+
+      // FUNCTIONS
+
+//function to select word to guess from array
+
+//function to update number of wins
+
+//function to log letters guessed
+
+//function to record correct letters guessed
+
+//function to 
+
+      // Function to render questions.
+      function renderQuestion() {
+        // If there are still more questions, render the next one.
+        if (questionIndex <= (questions.length - 1)) {
+          document.querySelector("#question").innerHTML = questions[questionIndex].q;
+        }
+        // If there aren't, render the end game screen.
+        else {
+          document.querySelector("#question").innerHTML = "Game Over!";
+          document.querySelector("#score").innerHTML = "Final Score: " + score + " out of " + questions.length;
+        }
+      }
+  
+      // Function that updates the score...
+      function updateScore() {
+        document.querySelector("#score").innerHTML = "Score: " + score;
+      }
+  
+  
+      // MAIN PROCESS
+      // ==============================================================================
+  
+      // Calling functions to start the game.
+      renderQuestion();
+      updateScore();
+  
+      // When the user presses a key, it will run the following function...
+      document.onkeyup = function(event) {
+  
+        // If there are no more questions, stop the function.
+        if (questionIndex === questions.length) {
+          return;
+        }
+  
+        // Determine which key was pressed, make it lowercase, and set it to the userInput variable.
+        var userInput = event.key.toLowerCase();
+  
+        // Only run this code if "t" or "f" were pressed.
+        if (userInput === "t" || userInput === "f") {
+  
+          // If they guess the correct answer, increase and update score, alert them they got it right.
+          if (userInput === questions[questionIndex].a) {
+            alert("Correct!");
+            score++;
+            updateScore();
+          }
+          // If wrong, alert them they are wrong.
+          else {
+            alert("Wrong!");
+          }
+  
+          // Increment the questionIndex variable and call the renderQuestion function.
+          questionIndex++;
+          renderQuestion();
+  
+        }
+  
+      };
+  
+
+</script>
+
+
+</body>
+
+</html>
